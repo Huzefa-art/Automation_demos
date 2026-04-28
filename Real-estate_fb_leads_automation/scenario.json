@@ -1,0 +1,125 @@
+{
+  "name": "Real Estate Lead Management Automation",
+  "flow": [
+    {
+      "id": 1,
+      "module": "facebook-lead-ads:WatchLeads",
+      "version": 1,
+      "parameters": {},
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-sheets:SearchRows",
+      "version": 4,
+      "parameters": {
+        "spreadsheetId": "",
+        "sheetName": "Leads",
+        "filter": "[{\"column\":\"B\",\"oper\":\"eq\",\"value\":\"{{1.email}}\"}]"
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-sheets:AddRow",
+      "version": 4,
+      "parameters": {
+        "spreadsheetId": "",
+        "sheetName": "Leads"
+      },
+      "mapper": {
+        "A": "{{1.full_name}}",
+        "B": "{{1.email}}",
+        "C": "{{1.phone_number}}",
+        "D": "Facebook Lead Ads",
+        "E": "{{now}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        }
+      },
+      "filter": {
+        "name": "Is New Lead",
+        "conditions": [
+          [
+            {
+              "a": "{{2.totalItemCount}}",
+              "o": "number:equal",
+              "b": 0
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "module": "hubspot-crm:CreateContact",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "email": "{{1.email}}",
+        "firstname": "{{1.full_name}}",
+        "phone": "{{1.phone_number}}"
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 5,
+      "module": "google-email-sender:SendEmail",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "to": ["{{1.email}}"],
+        "subject": "Thank you for your interest!",
+        "content": "Hello {{1.full_name}},\n\nThank you for your interest in our property listings on Facebook! We'll reach out soon."
+      },
+      "metadata": {
+        "designer": {
+          "x": 1200,
+          "y": -100
+        }
+      }
+    },
+    {
+      "id": 6,
+      "module": "google-email-sender:SendEmail",
+      "version": 1,
+      "parameters": {},
+      "mapper": {
+        "to": ["REPLACE_WITH_YOUR_EMAIL"],
+        "subject": "🚀 NEW LEAD: {{1.full_name}}",
+        "content": "New lead received!\n\nName: {{1.full_name}}\nEmail: {{1.email}}\nPhone: {{1.phone_number}}\nSource: Facebook Lead Ads"
+      },
+      "metadata": {
+        "designer": {
+          "x": 1200,
+          "y": 100
+        }
+      }
+    }
+  ],
+  "connections": [],
+  "metadata": {
+    "instant": true,
+    "version": 1
+  }
+}
