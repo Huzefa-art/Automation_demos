@@ -10,7 +10,7 @@ If you don't have these already, sign up for the free versions:
 1. **Make.com**: [Sign up here](https://www.make.com/en/register).
 2. **Google Account**: For Google Sheets and Gmail.
 3. **HubSpot CRM**: [Sign up for Free CRM](https://www.hubspot.com/products/crm).
-4. **Facebook Business Suite**: You need a Facebook Page and a Lead Ad form.
+4. **Facebook Business Suite**: You need a Facebook Page and a Lead Ad form (Go to developers.facebook.com and log in with your Facebook account to create free Facebook built in lead ad testing tool inside their developer panel.
 
 ---
 
@@ -37,7 +37,42 @@ If you don't have these already, sign up for the free versions:
 
 ---
 
-## 4. Connect Your Services to Make.com
+## 4. create free Facebook built in lead ad testing tool inside their developer panel
+Step 1 — Go to Facebook Developer Tools:
+Go to developers.facebook.com and log in with your Facebook account.
+
+Step 1 — Create an App:
+
+Click "My Apps"
+Click "Create App"
+Select "Business" type
+Give it any name like "Lead Test App"
+Complete the setup
+
+
+Step 2 — Find the Lead Ads Testing Tool:
+
+Inside your app dashboard
+Go to "Tools" in the left menu
+Look for "Lead Ads Testing Tool"
+Or go directly to: developers.facebook.com/tools/lead-ads-testing
+
+
+Step 3 — Connect your Facebook Page:
+
+Select your Facebook Page from the dropdown
+Select your Lead Ad Form
+If you don't have a form yet you need to create one first in Facebook Ads Manager. It takes 5 minutes and costs nothing.
+
+
+Step 4 — Submit a fake lead:
+
+Fill in fake name, email, phone number
+Click submit
+That triggers Make.com exactly like a real lead would
+
+
+## 5. Connect Your Services to Make.com
 
 Click on each module in the scenario to set up the connection:
 
